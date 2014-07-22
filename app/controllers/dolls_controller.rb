@@ -4,6 +4,7 @@ class DollsController < ApplicationController
       @doll = Doll.first()
       @location = @doll.location
       @destinations = @location.destinations.all
+      @items = @location.items.all
   end
 
 end

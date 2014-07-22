@@ -3,3 +3,6 @@ location = <%= @location.name %>
 destinations = <% @destinations.each do |dest| %>
 <%= dest.name %>
 <% end %>
+items = <% @items.each do |item| %>
+<%= item.name %>
+<%end%>

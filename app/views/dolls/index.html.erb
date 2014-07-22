@@ -1,0 +1,5 @@
+name = <%= @doll.name %>
+location = <%= @location.name %>
+destinations = <% @destinations.each do |dest| %>
+<%= dest.name %>
+<% end %>

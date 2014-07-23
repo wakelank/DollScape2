@@ -1,0 +1,39 @@
+#drawing{
+  z-index: 1;
+  position:absolute;
+}
+#location-container{
+  z-index: 0;
+  position:absolute;
+  display: -webkit-box;
+  width:100%;
+  height:100%;
+}
+#destination-locations{
+  width:20%;
+  height:100%;
+
+
+}
+
+.location {
+  border: 3px black solid
+}
+#main-location{
+  background-color:red;
+  width:80%;
+}
+#placement1{
+background-color:blue;
+height: 33%;
+}
+#placement2{
+  background-color:green;
+  height: 33%;
+
+}
+#placement3{
+  background-color:yellow;
+  height: 31%;
+
+}

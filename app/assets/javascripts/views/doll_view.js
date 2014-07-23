@@ -1,22 +1,30 @@
 var DollView = Backbone.View.extend({
+  initialize: function(){
+    var doll_image;
+    var itemsOnDoll;
+    dollId = this.model.attributes.id;
+  },
 
-  render :function(){
-    debugger;
+  render :function(){;
     filename = this.model.attributes.file_name;
     doll_image = draw.image('images/' + filename);
     doll_image.draggable();
+    doll_image.back();
+    itemsOnDoll = draw.set();
 
     doll_image.beforedrag = function(){
-      doll_set.each(function(){
-        var itemBox = this.bbox();
-        var itemX = itemBox.x;
-        var itemY = itemBox.y;
-        var dollBox = doll_image.bbox();
-        var dollX = dollBox.x;
-        var dollY = dollBox.y;
-        diffX = dollX - itemX;
-        diffY = dollY - itemY;
-      })
+      if (itemsOnDoll.members > 0 ){
+        itemsOnDoll.each(function(){
+          var itemBox = this.bbox();
+          var itemX = itemBox.x;
+          var itemY = itemBox.y;
+          var dollBox = doll_image.bbox();
+          var dollX = dollBox.x;
+          var dollY = dollBox.y;
+          diffX = dollX - itemX;
+          diffY = dollY - itemY;
+        })
+      }
     }
 
     doll_image.dragmove = function(delta,event){
@@ -24,7 +32,7 @@ var DollView = Backbone.View.extend({
       var dollX = dollBox.x;
       var dollY = dollBox.y;
 
-      doll_set.each(function(){
+      itemsOnDoll.each(function(){
         var itemBox = this.bbox();
         var itemX = itemBox.x;
         var itemY = itemBox.y;

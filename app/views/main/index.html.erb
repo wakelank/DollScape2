@@ -1,10 +1,34 @@
 <h1>Dollscape</h1>
 
+<div id='location-container'>
+  <div id='main-location' class='location'>
+    main
+  </div>
+  <div id='destination-locations'>
+    <div id='placement1' class='location'>
+      1
+    </div>
+    <div id='placement2' class='location'>
+      2
+    </div>
+    <div id='placement3' class='location'>
+      3
+    </div>
+  </div>
+</div>
+
+<div id='drawing'>
+</div>
+
 <script type='text/javascript'>
 $(function(){
 
-draw = SVG('drawing').size('100%', 500);
-doll_set = draw.set();
+draw = SVG('drawing').size(800, 500);
+var doll_set = draw.set();
+var dollId;
+var mainLocationId;
+
+
 
 
 
@@ -12,7 +36,6 @@ var doll = new Doll();
 
 doll.fetch({
   success: function(){
-    console.log("fetch success");
     var dollView = new DollView({model: doll});
     dollView.render();
   },
@@ -21,7 +44,8 @@ doll.fetch({
   }
 });
 
-var doll_image;
+
+
 
 var glasses = draw.image('images/glasses1.svg');
 var pants = draw.image('images/pants1.svg');
@@ -43,14 +67,14 @@ glasses.dragmove = function(delta, event){
   var itemBox = glasses.bbox();
   var itemX = itemBox.x;
   var itemY = itemBox.y;
-
+;
   if (doll_image.inside(itemX, itemY)){
-    if (doll_set.index(glasses) == -1){
-      doll_set.add(glasses);
+    if (itemsOnDoll.index(glasses) == -1){
+      itemsOnDoll.add(glasses);
     }
   }
 else{
-  doll_set.remove(glasses);
+  itemsOnDoll.remove(glasses);
 }
 }
 

@@ -1,1 +1,3 @@
-var Doll = Backbone.Model.extend({});
+var Doll = Backbone.Model.extend({
+  urlRoot: '/dolls'
+});

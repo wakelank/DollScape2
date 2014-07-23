@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'dolls#index'
+  root 'main#index'
+  get 'dolls' => 'dolls#index'
 
 
 

@@ -1,0 +1,60 @@
+<h1>Dollscape</h1>
+
+<script type='text/javascript'>
+$(function(){
+
+draw = SVG('drawing').size('100%', 500);
+doll_set = draw.set();
+
+
+
+var doll = new Doll();
+
+doll.fetch({
+  success: function(){
+    console.log("fetch success");
+    var dollView = new DollView({model: doll});
+    dollView.render();
+  },
+  error: function(model,response,options){
+    console.log("fetch error")
+  }
+});
+
+var doll_image;
+
+var glasses = draw.image('images/glasses1.svg');
+var pants = draw.image('images/pants1.svg');
+
+var diffX = 0;
+var diffY = 0;
+
+
+glasses.draggable();
+
+pants.draggable();
+
+//doll_set.draggable();
+
+
+
+
+glasses.dragmove = function(delta, event){
+  var itemBox = glasses.bbox();
+  var itemX = itemBox.x;
+  var itemY = itemBox.y;
+
+  if (doll_image.inside(itemX, itemY)){
+    if (doll_set.index(glasses) == -1){
+      doll_set.add(glasses);
+    }
+  }
+else{
+  doll_set.remove(glasses);
+}
+}
+
+
+
+})
+</script>

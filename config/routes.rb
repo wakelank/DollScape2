@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   root 'main#index'
   get 'dolls' => 'dolls#index'
+  get 'doll/:id/locations' => 'locations#show'
+  get 'location/:id/destinations' => 'location#index'
+  get 'location/:id/items' => 'items#index'
 
 
 

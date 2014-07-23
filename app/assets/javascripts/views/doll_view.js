@@ -1,1 +1,2 @@
-var DollView = Backbone.View.extend({});
+var DollView = Backbone.View.extend({
+});

@@ -6,3 +6,23 @@ destinations = <% @destinations.each do |dest| %>
 items = <% @items.each do |item| %>
 <%= item.name %>
 <%end%>
+<hr>
+
+
+<script type='text/javascript'>
+$(function(){
+
+
+var draw = SVG('drawing').size('100%', 500);
+var rect = draw.rect(100, 100).attr({ fill: '#f06' });
+var doll_image = draw.image('images/doll1.svg');
+var glasses = draw.image('images/glasses1.svg');
+
+glasses.draggable();
+doll_image.draggable();
+debugger;
+
+
+
+})
+</script>

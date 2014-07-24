@@ -24,8 +24,8 @@ var DollView = Backbone.View.extend({
           diffX = dollX - itemX;
           diffY = dollY - itemY;
         })
-      }
-    }
+      };
+    };
 
     doll_image.dragmove = function(delta,event){
       var dollBox = doll_image.bbox();
@@ -38,7 +38,13 @@ var DollView = Backbone.View.extend({
         var itemY = itemBox.y;
         this.move(dollX - diffX, dollY - diffY);
       })
-    }
+    };
+    this.model.get('mainLocation').fetch({
+      success: function(data){
+        var locationView = new LocationView( data );
+        locationView.render();
+      }
+    });
   }
 
 });

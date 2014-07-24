@@ -1,1 +1,1 @@
-var RoomCollectionView = Backbone.View.extend({});
+var LocationCollectionView = Backbone.View.extend({});

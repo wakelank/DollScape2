@@ -1,4 +1,4 @@
 var LocationCollection = Backbone.Collection.extend({
-  model:Location
-  rootUrl:'/location/' + mainLocationId;
+  model:Location,
+  // rootUrl:'/location/' + mainLocationId + '/destinations'
 });

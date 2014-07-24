@@ -36,7 +36,11 @@ var doll = new Doll();
 
 doll.fetch({
   success: function(){
-    var dollView = new DollView({model: doll});
+    var mainLocationUrl = '/doll/' + doll.get('id') + '/locations';
+    var mainLocation = new Location();
+    mainLocation.url = mainLocationUrl;
+    doll.set('mainLocation', mainLocation);
+    var dollView = new DollView({ model: doll });
     dollView.render();
   },
   error: function(model,response,options){
@@ -44,9 +48,16 @@ doll.fetch({
   }
 });
 
-var locationCollection = new LocationCollection();
+// var location = new Location();
+// location.fetch({
+//   success: function(){
+//     var locationView = new LocationView({ model: location });
+//     locationView.render();
+//   }
+// });
 
-$('#main-location').css('background-image','url(images/room.svg)')
+
+
 
 
 

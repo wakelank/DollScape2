@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20140721232454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "destinations_locations", id: false, force: true do |t|
-    t.integer "location_id"
-    t.integer "destination_id",          null: false
-    t.integer "location_destination_id"
+  create_table "destinations_places", id: false, force: true do |t|
+    t.integer "place_id"
+    t.integer "destination_id",       null: false
+    t.integer "place_destination_id"
   end
 
   create_table "dolls", force: true do |t|
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140721232454) do
     t.string   "file_name"
     t.string   "hair_color"
     t.string   "skin_color"
-    t.integer  "location_id"
+    t.integer  "place_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,12 +36,12 @@ ActiveRecord::Schema.define(version: 20140721232454) do
     t.string   "name"
     t.string   "file_name"
     t.string   "color"
-    t.integer  "location_id"
+    t.integer  "place_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "locations", force: true do |t|
+  create_table "places", force: true do |t|
     t.string   "name"
     t.string   "file_name"
     t.integer  "origin_id"

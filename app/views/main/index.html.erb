@@ -1,10 +1,10 @@
 <h1>Dollscape</h1>
 
 <div id='place-container'>
-  <div id='main-location' class='place'>
+  <div id='main-place' class='place'>
     main
   </div>
-  <div id='destination-locations'>
+  <div id='destination-places'>
     <div id='placement1' class='place'>
       1
     </div>
@@ -37,7 +37,7 @@ var doll = new Doll();
 doll.fetch({
   success: function(){
     var mainPlaceUrl = '/doll/' + doll.get('id') + '/place';
-    var mainPlace = newPlacen();
+    var mainPlace = new Place();
     mainPlace.url = mainPlaceUrl;
     doll.set('mainPlace', mainPlace);
     var dollView = new DollView({ model: doll });

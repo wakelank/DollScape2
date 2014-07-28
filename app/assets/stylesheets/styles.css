@@ -2,24 +2,24 @@
   z-index: 1;
   position:absolute;
 }
-#location-container{
+#place-container{
   z-index: 0;
   position:absolute;
   display: -webkit-box;
   width:100%;
   height:100%;
 }
-#destination-locations{
+#destination-places{
   width:20%;
   height:100%;
 
 
 }
 
-.location {
+.place {
   border: 3px black solid
 }
-#main-location{
+#main-place{
   background-color:red;
   width:80%;
 }

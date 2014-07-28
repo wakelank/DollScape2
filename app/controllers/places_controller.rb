@@ -1,4 +1,4 @@
-class PlacessController < ApplicationController
+class PlacesController < ApplicationController
 
   def show
     doll = Doll.find(params[:id])

@@ -38,9 +38,17 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'jasmine', group: [:development, :test]
-gem 'rspec-rails', group: [:development, :test]
-gem 'pry', group: [:development, :test]
+# gem 'jasmine', group: [:development, :test]
+# gem 'rspec-rails', group: [:development, :test]
+# gem 'pry', group: [:development, :test]
+
+group :development, :test do
+  gem 'jasmine'
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'pry'
+  gem 'factory_girl_rails'
+end
+
 
 group :production do
   gem 'rails_12factor'

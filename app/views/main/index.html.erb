@@ -36,7 +36,7 @@ var doll = new Doll();
 
 doll.fetch({
   success: function(){
-    var mainLocationUrl = '/doll/' + doll.get('id') + '/locations';
+    var mainLocationUrl = '/doll/' + doll.get('id') + '/location';
     var mainLocation = new Location();
     mainLocation.url = mainLocationUrl;
     doll.set('mainLocation', mainLocation);

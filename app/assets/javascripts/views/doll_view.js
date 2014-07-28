@@ -3,7 +3,10 @@ var DollView = Backbone.View.extend({
     var doll_image;
     var itemsOnDoll;
     dollId = this.model.attributes.id;
+
   },
+
+
 
   render :function(){;
     filename = this.model.attributes.file_name;
@@ -39,12 +42,18 @@ var DollView = Backbone.View.extend({
         this.move(dollX - diffX, dollY - diffY);
       })
     };
-    this.model.get('mainLocation').fetch({
+
+    var location = new Location();
+     this.model.get('mainLocation').fetch({
       success: function(data){
-        var locationView = new LocationView( data );
+        debugger;
+        var locationView = new LocationView(data)
         locationView.render();
       }
     });
+
+
+
   }
 
 });

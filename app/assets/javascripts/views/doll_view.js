@@ -43,7 +43,6 @@ var DollView = Backbone.View.extend({
       })
     };
 
-    var location = new Location();
      this.model.get('mainLocation').fetch({
       success: function(data){
         debugger;

@@ -1,4 +1,4 @@
-var LocationView = Backbone.View.extend({
+var PlaceView = Backbone.View.extend({
 
   render: function(){
     debugger;

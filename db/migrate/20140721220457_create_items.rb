@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :name
       t.string :file_name
       t.string :color
-      t.references :location
+      t.references :place
 
       t.timestamps
     end

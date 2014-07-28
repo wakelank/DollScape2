@@ -5,7 +5,7 @@ class CreateDolls < ActiveRecord::Migration
       t.string :file_name
       t.string :hair_color
       t.string :skin_color
-      t.references :location
+      t.references :place
 
       t.timestamps
     end

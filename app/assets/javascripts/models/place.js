@@ -1,6 +1,6 @@
-var Location = Backbone.Model.extend({
+var Place = Backbone.Model.extend({
   initialize:function(){
-    var destinationsUrl = '/locations/' + this.get('id') + '/destinations';
+    var destinationsUrl = '/place/' + this.get('id') + '/destinations';
     var destinations = new DestinationCollection();
     destinations.url = destinationsUrl;
     this.set('destinations', destinations);

@@ -8,16 +8,16 @@
 
 
 
-home = Location.create({ name: "Home", file_name: "room.svg" })
-beach = Location.create ({ name: "Beach", file_name: "beach.svg"})
-park = Location.create({ name: "Park", file_name: "park.svg" })
-party = Location.create({ name: "Party", file_name: "party.svg" })
+home = Place.create({ name: "Home", file_name: "room.svg" })
+beach = Place.create ({ name: "Beach", file_name: "beach.svg"})
+park = Place.create({ name: "Park", file_name: "park.svg" })
+party = Place.create({ name: "Party", file_name: "party.svg" })
 
 Doll.create({ name: 'Lichard', file_name: "doll1.svg", hair_color: "#E64F3E", skin_color: "3ED5E6", location: home })
 
-Location.all.each do |loc|
-  Location.all.each do |dest|
-    loc.destinations <<  dest if loc != dest
+Place.all.each do |place|
+  Place.all.each do |dest|
+    place.destinations <<  dest if loc != dest
   end
 end
 

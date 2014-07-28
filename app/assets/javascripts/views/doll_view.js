@@ -42,10 +42,12 @@ var DollView = Backbone.View.extend({
         this.move(dollX - diffX, dollY - diffY);
       })
     };
-
-     this.model.get('mainPlace').fetch({
+    
+    var place = new Place();
+    place = this.model.get('mainPlace');
+     place.fetch({
       success: function(data){
-        var placeView = new PlaceView(data)
+        var placeView = new PlaceView({model: place})
         placeView.render();
       }
     });

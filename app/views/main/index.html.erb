@@ -36,10 +36,7 @@ var doll = new Doll();
 
 doll.fetch({
   success: function(){
-    var mainPlaceUrl = '/doll/' + doll.get('id') + '/place';
-    var mainPlace = new Place();
-    mainPlace.url = mainPlaceUrl;
-    doll.set('mainPlace', mainPlace);
+    doll.set_place(doll.get('id'));
     var dollView = new DollView({ model: doll });
     dollView.render();
   },

@@ -1,10 +1,10 @@
 var Place = Backbone.Model.extend({
-  initialize:function(){
-    var destinationsUrl = '/place/' + this.get('id') + '/destinations';
-    var destinations = new DestinationCollection();
-    destinations.url = destinationsUrl;
-    this.set('destinations', destinations);
-  }
+  // initialize:function(){
+  //   var destinationsUrl = '/place/' + this.get('id') + '/destinations';
+  //   var destinations = new DestinationCollection();
+  //   destinations.url = destinationsUrl;
+  //   this.set('destinations', destinations);
+  // }
 
 });
 

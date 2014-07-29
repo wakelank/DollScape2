@@ -23,17 +23,7 @@
   background-color:red;
   width:80%;
 }
-#placement1{
+.destination{
 background-color:blue;
 height: 33%;
-}
-#placement2{
-  background-color:green;
-  height: 33%;
-
-}
-#placement3{
-  background-color:yellow;
-  height: 31%;
-
 }

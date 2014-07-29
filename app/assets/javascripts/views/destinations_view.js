@@ -5,9 +5,7 @@ var DestinationCollectionView = Backbone.View.extend({
     var that = this;
     _.each(this.model.models, function(destination){
       var destinationView = new DestinationView({model: destination});
-      var placementId = 1;
-      destinationView.render({ placementId: placementId });
-      ++placementId;
+      destinationView.render();
     })
     return this;
   }

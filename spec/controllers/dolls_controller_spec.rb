@@ -7,17 +7,18 @@ RSpec.describe DollsController, :type => :controller do
   end
 
   it "gets doll data from database" do
-    @expected = {
-                :name => "Lichard_test",
-                :file_name => "doll1.svg",
-                :hair_color => "#E64F3E",
-                :skin_color => "#3ED5E6"
+    expected = "Lichard_test";
+    FactoryGirl.create(:doll)
+    get :index
+    expect(JSON.parse(response.body).values).to include expected
+  end
 
-    }.to_json
+  it "gets a place ID with the doll" do
     FactoryGirl.create(:doll)
 
+    expected = "place_id"
     get :index
-    expect(response.body).to eq @expected
+    expect(response.body).to include expected
   end
 
 

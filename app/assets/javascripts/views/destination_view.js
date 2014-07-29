@@ -1,12 +1,6 @@
 var DestinationView = Backbone.View.extend({
 
   tagname: 'div',
-  // className: 'destination',
-  // attributes: {'background-image':this.model.get('file_name')},
-  //
-  // use a template to have the view put the image in the background of a div.
-  // remove the placement divs from the index.  Have the view generate them.
-
 
   render: function(){
     var id = this.model.get('id');

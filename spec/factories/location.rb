@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :location do
+  factory :place do
     name "Home_test"
     file_name "room.svg"
-    # association :destination, 
+    # association :destination,
     #
     # after(:build) do |location|
     #   location.destinations << FactoryGirl.build(:destination, :location => location)

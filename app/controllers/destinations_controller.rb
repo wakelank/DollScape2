@@ -1,8 +1,8 @@
 class DestinationsController < ApplicationController
 
   def index
-    location = Location.find(params[:id])
-    destinations = location.destinations
+    place = Place.find(params[:id])
+    destinations = place.destinations
     render json:destinations.to_json
   end
 

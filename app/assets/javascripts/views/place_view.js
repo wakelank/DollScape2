@@ -1,15 +1,25 @@
 var PlaceView = Backbone.View.extend({
 
   render: function(){
-    filename = this.model.attributes.file_name;
+    var place = this.model;
+    filename = place.get('file_name');
     $('#main-place').css('background-image','url(images/' + filename + ')');
 
-    // this.attributes.destinations.fetch({
-    //   success: function(data){
-    //     var destinationsView = new DestinationsView( data );
-    //     destinationsView.render();
-    //   }
-    // });
+    var destinations = new DestinationCollection();
+    destinationsUrl = '/place/' + place.get('id') + '/destinations'
+    destinations.url = destinationsUrl;
+    place.set('destinations', destinations);
+
+
+    place.get('destinations').fetch({
+      success: function(){
+        var destinationCollectionView = new DestinationCollectionView({ model: place.get('destinations') });
+        destinationCollectionView.render();
+      },
+      error: function(model,response,options){
+        console.log("fetch error")
+      }
+    });
 
   }
 

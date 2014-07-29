@@ -23,6 +23,11 @@ var DollView = Backbone.View.extend({
           itemsOnDoll.add(itemImage);
         }
       });
+      App.vent.on('itemOff', function(itemImage){
+        if (itemsOnDoll.index(itemImage) > -1){
+          itemsOnDoll.remove(itemImage);
+        }
+      })
 
       if (itemsOnDoll.members.length > 0 ){
         itemsOnDoll.each(function(){

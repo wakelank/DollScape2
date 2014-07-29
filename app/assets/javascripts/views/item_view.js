@@ -20,15 +20,16 @@ var ItemView = Backbone.View.extend({
       stickToDoll(dollImage, itemImage);
     });
 
-  function stickToDoll(dollImage,  itemImage){
-    var itemBox = itemImage.bbox();
-    var itemX = itemBox.x;
-    var itemY = itemBox.y;
-    if(dollImage.inside(itemX, itemY)){
-      App.vent.trigger('itemOn', itemImage)
-   }
-  }
+    function stickToDoll(dollImage,  itemImage){
+      var itemBox = itemImage.bbox();
+      var itemX = itemBox.x;
+      var itemY = itemBox.y;
+      if(dollImage.inside(itemX, itemY)){
+        App.vent.trigger('itemOn', itemImage)
+      }else{
+       App.vent.trigger('itemOff', itemImage)
+      }
 
+    }
   }
-
 });

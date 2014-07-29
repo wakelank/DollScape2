@@ -19,6 +19,10 @@ var doll_set = draw.set();
 var dollId;
 var mainPlaceId;
 
+window.App = {};
+window.App.vent = _.extend({}, Backbone.Events);
+
+
 var doll = new Doll();
 doll.fetch({
   success: function(){
@@ -43,37 +47,37 @@ doll.fetch({
 
 
 
+//
+// var glasses = draw.image('images/glasses1.svg');
+// var pants = draw.image('images/pants1.svg');
 
-var glasses = draw.image('images/glasses1.svg');
-var pants = draw.image('images/pants1.svg');
-
-var diffX = 0;
-var diffY = 0;
+// var diffX = 0;
+// var diffY = 0;
 
 
-glasses.draggable();
-
-pants.draggable();
+// glasses.draggable();
+//
+// pants.draggable();
 
 //doll_set.draggable();
 
 
 
 
-glasses.dragmove = function(delta, event){
-  var itemBox = glasses.bbox();
-  var itemX = itemBox.x;
-  var itemY = itemBox.y;
-;
-  if (doll_image.inside(itemX, itemY)){
-    if (itemsOnDoll.index(glasses) == -1){
-      itemsOnDoll.add(glasses);
-    }
-  }
-else{
-  itemsOnDoll.remove(glasses);
-}
-}
+// glasses.dragmove = function(delta, event){
+//   var itemBox = glasses.bbox();
+//   var itemX = itemBox.x;
+//   var itemY = itemBox.y;
+// ;
+//   if (doll_image.inside(itemX, itemY)){
+//     if (itemsOnDoll.index(glasses) == -1){
+//       itemsOnDoll.add(glasses);
+//     }
+//   }
+// else{
+//   itemsOnDoll.remove(glasses);
+// }
+// }
 
 
 

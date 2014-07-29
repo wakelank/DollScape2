@@ -22,4 +22,4 @@ Place.all.each do |place|
 end
 
 Item.create({name: "shirt1", color:"#E8E27C", place: home, file_name: "shirt1.svg"})
-Item.create({name: "pants1", color:"#E87CD2", place: home, file_name: "pants1.svg"})
+Item.create({name: "pants1", color:"#E87CD2", place: beach, file_name: "pants1.svg"})

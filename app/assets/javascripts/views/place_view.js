@@ -21,6 +21,19 @@ var PlaceView = Backbone.View.extend({
       }
     });
 
+    var items = new ItemCollection();
+    itemsUrl = '/place/' + place.get('id') + '/items';
+    items.url = itemsUrl;
+    place.set('items', items);
+
+    place.get('items').fetch({
+      success: function(){
+        var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
+        itemCollectionView.render();
+      }
+    })
+
+
   }
 
 });

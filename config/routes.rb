@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'place/:id/destinations' => 'destinations#index'
   get 'place/:id/items' => 'items#index'
 
+ get 'places' => 'places#index'
 
 
 

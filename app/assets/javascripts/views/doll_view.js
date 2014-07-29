@@ -16,8 +16,18 @@ var DollView = Backbone.View.extend({
     itemsOnDoll = draw.set();
 
     doll_image.beforedrag = function(){
-      if (itemsOnDoll.members > 0 ){
+      var data = { dollImage: doll_image }
+      App.vent.trigger('dollDrag', data);
+      App.vent.on('itemOn', function(itemImage){
+        if (itemsOnDoll.index(itemImage) == -1){
+          itemsOnDoll.add(itemImage);
+        }
+      });
+
+      if (itemsOnDoll.members.length > 0 ){
         itemsOnDoll.each(function(){
+          var diffX = 0;
+          var diffY = 0;
           var itemBox = this.bbox();
           var itemX = itemBox.x;
           var itemY = itemBox.y;
@@ -26,6 +36,8 @@ var DollView = Backbone.View.extend({
           var dollY = dollBox.y;
           diffX = dollX - itemX;
           diffY = dollY - itemY;
+          this.data({ diffX : diffX, diffY : diffY });
+
         })
       };
     };
@@ -36,13 +48,15 @@ var DollView = Backbone.View.extend({
       var dollY = dollBox.y;
 
       itemsOnDoll.each(function(){
+        var diffX = this.data('diffX');
+        var diffY = this.data('diffY');
         var itemBox = this.bbox();
         var itemX = itemBox.x;
         var itemY = itemBox.y;
         this.move(dollX - diffX, dollY - diffY);
       })
     };
-    
+
     var place = new Place();
     place = this.model.get('mainPlace');
      place.fetch({

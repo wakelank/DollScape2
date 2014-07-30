@@ -1,38 +1,61 @@
 var DollView = Backbone.View.extend({
   initialize: function(){
+    var that = this;
     var doll_image;
     var itemsOnDoll;
     dollId = this.model.attributes.id;
+
+    App.vent.on('changePlace', function(){
+      var items = $('.item');
+      for (var i = 0; i < items.length; ++i){
+        if (isItemOnDoll(items[i]) != true){
+          items[i].remove();
+        }
+      };
+    });
+
+
+  function isItemOnDoll(item){
+    for (var i = 0; i < that.itemsOnDoll.members.length; ++i){
+      var val = false;
+      if (that.itemsOnDoll.members[i].node == item){
+        val = true;
+      }
+    }
+    return val;
+  }
+
 
   },
 
 
 
-  render :function(){;
+  render :function(){
+    var that = this;
     var filename = this.model.attributes.file_name;
     var doll_image = draw.image('images/' + filename);
     doll_image.draggable();
     doll_image.back();
-    var itemsOnDoll = draw.set();
+    this.itemsOnDoll = draw.set();
 
     doll_image.beforedrag = function(){
-      var data = { dollImage: doll_image }
+      var data = { dollImage: doll_image };
       App.vent.trigger('dollDrag', data);
       App.vent.on('itemOnDoll', function(data){
         var itemImage = data.itemImage;
-        if (itemsOnDoll.index(itemImage) == -1){
-          itemsOnDoll.add(itemImage);
+        if (that.itemsOnDoll.index(itemImage) == -1){
+          that.itemsOnDoll.add(itemImage);
           }
       });
       App.vent.on('itemOffDoll', function(data){
         var itemImage = data.itemImage;
-        if (itemsOnDoll.index(itemImage) > -1){
-          itemsOnDoll.remove(itemImage);
+        if (that.itemsOnDoll.index(itemImage) > -1){
+          that.itemsOnDoll.remove(itemImage);
         }
-      })
+      });
 
-      if (itemsOnDoll.members.length > 0 ){
-        itemsOnDoll.each(function(){
+      if (that.itemsOnDoll.members.length > 0 ){
+        that.itemsOnDoll.each(function(){
           var diffX = 0;
           var diffY = 0;
           var itemBox = this.bbox();
@@ -54,7 +77,7 @@ var DollView = Backbone.View.extend({
       var dollX = dollBox.x;
       var dollY = dollBox.y;
 
-      itemsOnDoll.each(function(){
+      that.itemsOnDoll.each(function(){
         var diffX = this.data('diffX');
         var diffY = this.data('diffY');
         var itemBox = this.bbox();
@@ -72,7 +95,6 @@ var DollView = Backbone.View.extend({
         placeView.render();
       }
     });
-
 
 
   }

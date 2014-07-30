@@ -34,7 +34,7 @@ var PlaceView = Backbone.View.extend({
 
     var items = new ItemCollection();
 
-    if (items.length == 0){
+
 
     itemsUrl = '/place/' + place.get('id') + '/items';
     items.url = itemsUrl;
@@ -45,20 +45,23 @@ var PlaceView = Backbone.View.extend({
           App.vent.on('itemOnDoll', function(data){
             var item = data.item;
             items.remove(item);
+            // items.each(function(item){
+            //   Backbone.sync("update", item);
+            // });
           });
           App.vent.on('itemOffDoll', function(data){
             var item = data.item;
             items.add(item);
+            console.log(item + ' added to '+ place)
+            items.each(function(item){
+              item.set('place_id', place.get('id'));
+              Backbone.sync("update", item);
+            });
           });
           var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
           itemCollectionView.render();
         }
       })
-    }else{
-      var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
-      itemCollectionView.render();
-
-    }
 
 
   }

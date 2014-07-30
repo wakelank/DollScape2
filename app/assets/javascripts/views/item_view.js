@@ -13,20 +13,22 @@ var ItemView = Backbone.View.extend({
 
     App.vent.on('dollDrag', function(data){
       var dollImage = data.dollImage;
-      isOnDoll(dollImage, itemImage);
+      isOnDoll(dollImage, itemImage, item);
     });
 
-    function isOnDoll(dollImage,  itemImage){
+    function isOnDoll(dollImage,  itemImage,item){
       var itemBox = itemImage.bbox();
       var itemX = itemBox.x;
       var itemY = itemBox.y;
       var data = {};
-      data.item = this.model;
+      data.item = item;
       data.itemImage = itemImage;
       if(dollImage.inside(itemX, itemY)){
         App.vent.trigger('itemOnDoll', data);
+        console.log('item on' + data.item);
       }else{
        App.vent.trigger('itemOffDoll', data);
+       console.log('item off ' + data.item);
       }
 
     }

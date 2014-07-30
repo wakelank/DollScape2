@@ -14,15 +14,15 @@ var DestinationView = Backbone.View.extend({
 
     function changePlace(id){
       App.vent.trigger('changePlace', id);
-      // var place = new Place();
-      // place.url = '/place/' + id
-      //  place.fetch({
-      //   success: function(data){
-      //     var placeView = new PlaceView({model: place})
-      //     placeView.render();
-      //     mainPlaceId = id;
-      //   }
-    //  });
+      var place = new Place();
+      place.url = '/place/' + id
+       place.fetch({
+        success: function(data){
+          var placeView = new PlaceView({model: place})
+          placeView.render();
+          // mainPlaceId = id;
+        }
+     });
     }
 
   }

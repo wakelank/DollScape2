@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get 'place/:id' => 'places#show'
   get 'place/:id/destinations' => 'destinations#index'
   get 'place/:id/items' => 'items#index'
+  put 'place/:place_id/items/:id' => 'items#update'
 
- get 'places' => 'places#index'
 
 
 

@@ -9,21 +9,23 @@ var DollView = Backbone.View.extend({
 
 
   render :function(){;
-    filename = this.model.attributes.file_name;
-    doll_image = draw.image('images/' + filename);
+    var filename = this.model.attributes.file_name;
+    var doll_image = draw.image('images/' + filename);
     doll_image.draggable();
     doll_image.back();
-    itemsOnDoll = draw.set();
+    var itemsOnDoll = draw.set();
 
     doll_image.beforedrag = function(){
       var data = { dollImage: doll_image }
       App.vent.trigger('dollDrag', data);
-      App.vent.on('itemOn', function(itemImage){
+      App.vent.on('itemOnDoll', function(data){
+        var itemImage = data.itemImage;
         if (itemsOnDoll.index(itemImage) == -1){
           itemsOnDoll.add(itemImage);
-        }
+          }
       });
-      App.vent.on('itemOff', function(itemImage){
+      App.vent.on('itemOffDoll', function(data){
+        var itemImage = data.itemImage;
         if (itemsOnDoll.index(itemImage) > -1){
           itemsOnDoll.remove(itemImage);
         }

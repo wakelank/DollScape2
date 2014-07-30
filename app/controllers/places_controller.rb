@@ -13,4 +13,6 @@ class PlacesController < ApplicationController
     render json: main_place.to_json
   end
 
+
+
 end

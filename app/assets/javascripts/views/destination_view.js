@@ -19,6 +19,7 @@ var DestinationView = Backbone.View.extend({
         success: function(data){
           var placeView = new PlaceView({model: place})
           placeView.render();
+          mainPlaceId = id;
         }
       });
     }

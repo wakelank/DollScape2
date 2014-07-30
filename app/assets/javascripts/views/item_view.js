@@ -1,33 +1,32 @@
 var ItemView = Backbone.View.extend({
-  initialize: function(){
-
-
-
-
-  },
-
 
   render :function(){
     var item = this.model;
-    filename = item.attributes.file_name;
-    itemImage = draw.image('images/' + filename);
+    var filename = item.attributes.file_name;
+    var itemImage = draw.image('images/' + filename);
     itemImage.draggable();
     itemImage.front();
     itemImage.addClass('item');
 
+    itemImage.dragmove = function(){
+    };
+
     App.vent.on('dollDrag', function(data){
       var dollImage = data.dollImage;
-      stickToDoll(dollImage, itemImage);
+      isOnDoll(dollImage, itemImage);
     });
 
-    function stickToDoll(dollImage,  itemImage){
+    function isOnDoll(dollImage,  itemImage){
       var itemBox = itemImage.bbox();
       var itemX = itemBox.x;
       var itemY = itemBox.y;
+      var data = {};
+      data.item = this.model;
+      data.itemImage = itemImage;
       if(dollImage.inside(itemX, itemY)){
-        App.vent.trigger('itemOn', itemImage);
+        App.vent.trigger('itemOnDoll', data);
       }else{
-       App.vent.trigger('itemOff', itemImage);
+       App.vent.trigger('itemOffDoll', data);
       }
 
     }

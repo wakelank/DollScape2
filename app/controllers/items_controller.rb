@@ -5,4 +5,9 @@ class ItemsController < ApplicationController
     items = place.items
     render json: items.to_json
   end
+
+  def update
+    item = Item.find(params[:id])
+    item.update_attributes{:id => params[:place_id]}
+  end
 end

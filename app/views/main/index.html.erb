@@ -15,9 +15,10 @@
 $(function(){
 
 draw = SVG('drawing').size(800, 500);
-var doll_set = draw.set();
-var dollId;
-var mainPlaceId;
+// var doll_set = draw.set();
+// var dollId;
+// var mainPlaceId;
+var itemCollections ={};
 
 window.App = {};
 window.App.vent = _.extend({}, Backbone.Events);
@@ -34,6 +35,35 @@ doll.fetch({
     console.log("fetch error")
   }
 });
+
+App.vent.on('insertCollection', function(data){
+  var placeId = data.collectionId;
+  var itemCollection = data.itemCollection;
+  itemCollections[placeId] = itemCollection;
+})
+
+App.vent.on('insertIntoCollection', function(data){
+  var item = data.item;
+  var placeId = data.placeId;
+  var itemCollection = itemCollections[placeId];
+  itemCollection.add(item);
+})
+
+App.vent.on('removeFromCollection', function(data){
+  var item = data.item;
+  var placeId = data.placeId;
+  var itemCollection = itemCollections[placeId];
+  itemCollection.remove(item);
+})
+
+function putItemOnDoll(){
+  // item is put into itemsOnDoll
+  //send item image to dollview
+
+  //item is removed from main place collection
+  //send item object to placeView
+
+}
 
 // var location = new Location();
 // location.fetch({

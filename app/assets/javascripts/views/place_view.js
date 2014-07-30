@@ -14,6 +14,9 @@ var PlaceView = Backbone.View.extend({
     place.get('destinations').fetch({
       success: function(){
         var destinationCollectionView = new DestinationCollectionView({ model: place.get('destinations') });
+        $('.destination').each(function(){
+            this.parentElement.removeChild(this);
+        });
         destinationCollectionView.render();
       },
       error: function(model,response,options){
@@ -22,12 +25,28 @@ var PlaceView = Backbone.View.extend({
     });
 
     var items = new ItemCollection();
+
+
     itemsUrl = '/place/' + place.get('id') + '/items';
     items.url = itemsUrl;
     place.set('items', items);
 
     place.get('items').fetch({
       success: function(){
+        App.vent.on('itemOnDoll', function(data){
+          var item = data.item;
+          items.remove(item);
+          items.each(function(item){
+            Backbone.sync("update",item)
+          });
+        });
+        App.vent.on('itemOffDoll', function(data){
+          var item = data.item;
+          items.add(item);
+          items.each(function(item){
+            Backbone.sync("update",item)
+          });
+        });
         var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
         itemCollectionView.render();
       }

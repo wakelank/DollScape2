@@ -1,15 +1,16 @@
 class PlacesController < ApplicationController
 
-  def show
+  def index
     doll = Doll.find(params[:id])
     main_place = doll.place
     render json: main_place.to_json
   end
 
-  def index
+
+
+  def show
     main_place = Place.find(params[:id])
-    destinations = main_place.destinations
-    render json: destinations.to_json
+    render json: main_place.to_json
   end
 
 end

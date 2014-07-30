@@ -2,7 +2,8 @@ Rails.application.routes.draw do
 
   root 'main#index'
   get 'dolls' => 'dolls#index'
-  get 'doll/:id/place' => 'places#show'
+  get 'doll/:id/place' => 'places#index'
+  get 'place/:id' => 'places#show'
   get 'place/:id/destinations' => 'destinations#index'
   get 'place/:id/items' => 'items#index'
 

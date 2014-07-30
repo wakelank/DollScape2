@@ -10,6 +10,19 @@ var DestinationView = Backbone.View.extend({
     this.$el.css('background-image', 'url(images/' + fileName + ')');
     $('#destination-places').append(this.$el);
 
+    this.$el.on('click', function(){ changeDestination(id) });
+
+    function changeDestination(id){
+      var place = new Place();
+      place.url = '/place/' + id
+       place.fetch({
+        success: function(data){
+          var placeView = new PlaceView({model: place})
+          placeView.render();
+        }
+      });
+    }
+
   }
 });
 

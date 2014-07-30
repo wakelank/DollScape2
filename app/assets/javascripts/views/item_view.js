@@ -25,9 +25,9 @@ var ItemView = Backbone.View.extend({
       var itemX = itemBox.x;
       var itemY = itemBox.y;
       if(dollImage.inside(itemX, itemY)){
-        App.vent.trigger('itemOn', itemImage)
+        App.vent.trigger('itemOn', itemImage);
       }else{
-       App.vent.trigger('itemOff', itemImage)
+       App.vent.trigger('itemOff', itemImage);
       }
 
     }

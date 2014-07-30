@@ -1,4 +1,12 @@
 var PlaceView = Backbone.View.extend({
+  initialize: function(){
+    App.vent.trigger('changePlace',function(id){
+      if (this.model.get('id') == id){
+        this.render();
+      };
+    });
+  },
+
 
   render: function(){
     var place = this.model;
@@ -26,31 +34,31 @@ var PlaceView = Backbone.View.extend({
 
     var items = new ItemCollection();
 
+    if (items.length == 0){
 
     itemsUrl = '/place/' + place.get('id') + '/items';
     items.url = itemsUrl;
     place.set('items', items);
 
-    place.get('items').fetch({
-      success: function(){
-        App.vent.on('itemOnDoll', function(data){
-          var item = data.item;
-          items.remove(item);
-          items.each(function(item){
-            Backbone.sync("update",item)
+      place.get('items').fetch({
+        success: function(){
+          App.vent.on('itemOnDoll', function(data){
+            var item = data.item;
+            items.remove(item);
           });
-        });
-        App.vent.on('itemOffDoll', function(data){
-          var item = data.item;
-          items.add(item);
-          items.each(function(item){
-            Backbone.sync("update",item)
+          App.vent.on('itemOffDoll', function(data){
+            var item = data.item;
+            items.add(item);
           });
-        });
-        var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
-        itemCollectionView.render();
-      }
-    })
+          var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
+          itemCollectionView.render();
+        }
+      })
+    }else{
+      var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
+      itemCollectionView.render();
+
+    }
 
 
   }

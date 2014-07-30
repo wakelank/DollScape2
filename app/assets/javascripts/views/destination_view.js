@@ -12,16 +12,17 @@ var DestinationView = Backbone.View.extend({
 
     this.$el.on('click', function(){ changeDestination(id) });
 
-    function changeDestination(id){
-      var place = new Place();
-      place.url = '/place/' + id
-       place.fetch({
-        success: function(data){
-          var placeView = new PlaceView({model: place})
-          placeView.render();
-          mainPlaceId = id;
-        }
-      });
+    function changePlace(id){
+      App.vent.trigger('changePlace', id);
+      // var place = new Place();
+      // place.url = '/place/' + id
+      //  place.fetch({
+      //   success: function(data){
+      //     var placeView = new PlaceView({model: place})
+      //     placeView.render();
+      //     mainPlaceId = id;
+      //   }
+    //  });
     }
 
   }

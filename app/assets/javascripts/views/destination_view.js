@@ -10,7 +10,7 @@ var DestinationView = Backbone.View.extend({
     this.$el.css('background-image', 'url(images/' + fileName + ')');
     $('#destination-places').append(this.$el);
 
-    this.$el.on('click', function(){ changeDestination(id) });
+    this.$el.on('click', function(){ changePlace(id) });
 
     function changePlace(id){
       App.vent.trigger('changePlace', id);

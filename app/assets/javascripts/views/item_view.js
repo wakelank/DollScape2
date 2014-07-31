@@ -1,5 +1,17 @@
 var ItemView = Backbone.View.extend({
-  intialize : function(){
+  initialize: function(){
+    var that = this;
+    var item = this.model;
+    item.set({'onDoll' : false});
+  App.vent.on('changePlace', function(placeId){
+    debugger;
+     if (item.get('onDoll')==false){
+        item.itemImage.remove();
+        that.remove();
+      }
+   });
+
+
 
 
 
@@ -13,10 +25,12 @@ var ItemView = Backbone.View.extend({
     data.item = item;
     data.itemImage = itemImage;
     if(dollImage.inside(itemX, itemY)){
+      item.set({ 'onDoll': true });
       App.vent.trigger('itemOnDoll', data);
       console.log('item on' + data.item);
     }else{
      App.vent.trigger('itemOffDoll', data);
+     item.set({ 'onDoll': false })
      console.log('item off ' + data.item);
     }
 

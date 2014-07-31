@@ -30,3 +30,9 @@ var DestinationView = Backbone.View.extend({
 
 // $('#main-place').css('background-image','url(images/' + filename + ')');
 // object.style.backgroundImage="url('URL')|none|initial|inherit"
+
+// function changePlace(placeId){
+//   //remove all items not in the itemsOnDoll
+//   //render destination with PlaceID as place
+//   //place should render it's items and it's destinations
+// }

@@ -5,6 +5,19 @@ var DollView = Backbone.View.extend({
     var itemsOnDoll;
     dollId = this.model.attributes.id;
 
+    App.vent.on('itemOnDoll', function(data){
+      var item = data.item;
+      if (that.itemsOnDoll.index(item) == -1){
+        that.itemsOnDoll.add(item);
+        }
+    });
+    App.vent.on('itemOffDoll', function(data){
+      var item = data.item;
+      if (that.itemsOnDoll.index(item) > -1){
+        that.itemsOnDoll.remove(item);
+      }
+    });
+
     // App.vent.on('changePlace', function(){
     //   var items = $('.item');
     //   for (var i = 0; i < items.length; ++i){
@@ -15,15 +28,15 @@ var DollView = Backbone.View.extend({
     // });
 
 
-  function isItemOnDoll(item){
-    for (var i = 0; i < that.itemsOnDoll.members.length; ++i){
-      var val = false;
-      if (that.itemsOnDoll.members[i].node == item){
-        val = true;
+    function isItemOnDoll(item){
+      for (var i = 0; i < that.itemsOnDoll.members.length; ++i){
+        var val = false;
+        if (that.itemsOnDoll.members[i].node == item){
+          val = true;
+        }
       }
+      return val;
     }
-    return val;
-  }
 
 
   },
@@ -41,18 +54,7 @@ var DollView = Backbone.View.extend({
     doll_image.beforedrag = function(){
       var data = { dollImage: doll_image };
       App.vent.trigger('dollDrag', data);
-      App.vent.on('itemOnDoll', function(data){
-        var item = data.item;
-        if (that.itemsOnDoll.index(item) == -1){
-          that.itemsOnDoll.add(item);
-          }
-      });
-      App.vent.on('itemOffDoll', function(data){
-        var item = data.item;
-        if (that.itemsOnDoll.index(item) > -1){
-          that.itemsOnDoll.remove(item);
-        }
-      });
+
 
       if (that.itemsOnDoll.members.length > 0 ){
         $.each(that.itemsOnDoll.members, function(i,item){

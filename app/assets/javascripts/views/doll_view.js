@@ -5,14 +5,14 @@ var DollView = Backbone.View.extend({
     var itemsOnDoll;
     dollId = this.model.attributes.id;
 
-    App.vent.on('changePlace', function(){
-      var items = $('.item');
-      for (var i = 0; i < items.length; ++i){
-        if (isItemOnDoll(items[i]) != true){
-          items[i].remove();
-        }
-      };
-    });
+    // App.vent.on('changePlace', function(){
+    //   var items = $('.item');
+    //   for (var i = 0; i < items.length; ++i){
+    //     if (isItemOnDoll(items[i]) != true){
+    //       items[i].remove();
+    //     }
+    //   };
+    // });
 
 
   function isItemOnDoll(item){
@@ -42,23 +42,23 @@ var DollView = Backbone.View.extend({
       var data = { dollImage: doll_image };
       App.vent.trigger('dollDrag', data);
       App.vent.on('itemOnDoll', function(data){
-        var itemImage = data.itemImage;
-        if (that.itemsOnDoll.index(itemImage) == -1){
-          that.itemsOnDoll.add(itemImage);
+        var item = data.item;
+        if (that.itemsOnDoll.index(item) == -1){
+          that.itemsOnDoll.add(item);
           }
       });
       App.vent.on('itemOffDoll', function(data){
-        var itemImage = data.itemImage;
-        if (that.itemsOnDoll.index(itemImage) > -1){
-          that.itemsOnDoll.remove(itemImage);
+        var item = data.item;
+        if (that.itemsOnDoll.index(item) > -1){
+          that.itemsOnDoll.remove(item);
         }
       });
 
       if (that.itemsOnDoll.members.length > 0 ){
-        that.itemsOnDoll.each(function(){
+        $.each(that.itemsOnDoll.members, function(i,item){
           var diffX = 0;
           var diffY = 0;
-          var itemBox = this.bbox();
+          var itemBox = item.itemImage.bbox();
           var itemX = itemBox.x;
           var itemY = itemBox.y;
           var dollBox = doll_image.bbox();
@@ -66,7 +66,7 @@ var DollView = Backbone.View.extend({
           var dollY = dollBox.y;
           diffX = dollX - itemX;
           diffY = dollY - itemY;
-          this.data({ diffX : diffX, diffY : diffY });
+          item.itemImage.data({ diffX : diffX, diffY : diffY });
 
         })
       };
@@ -77,13 +77,13 @@ var DollView = Backbone.View.extend({
       var dollX = dollBox.x;
       var dollY = dollBox.y;
 
-      that.itemsOnDoll.each(function(){
-        var diffX = this.data('diffX');
-        var diffY = this.data('diffY');
-        var itemBox = this.bbox();
+    $.each(that.itemsOnDoll.members, function(i,item){
+        var diffX = item.itemImage.data('diffX');
+        var diffY = item.itemImage.data('diffY');
+        var itemBox = item.itemImage.bbox();
         var itemX = itemBox.x;
         var itemY = itemBox.y;
-        this.move(dollX - diffX, dollY - diffY);
+        item.itemImage.move(dollX - diffX, dollY - diffY);
       })
     };
 

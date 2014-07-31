@@ -1,10 +1,10 @@
 var PlaceView = Backbone.View.extend({
   initialize: function(){
-    App.vent.trigger('changePlace',function(id){
-      if (this.model.get('id') == id){
-        this.render();
-      };
-    });
+    // App.vent.trigger('changePlace',function(id){
+    //   if (this.model.get('id') == id){
+    //     this.render();
+    //   };
+    // });
   },
 
 

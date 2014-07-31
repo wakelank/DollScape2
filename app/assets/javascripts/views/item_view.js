@@ -1,36 +1,43 @@
 var ItemView = Backbone.View.extend({
+  intialize : function(){
+
+
+
+  },
+
+  isOnDoll: function(dollImage,  itemImage,item){
+    var itemBox = itemImage.bbox();
+    var itemX = itemBox.x;
+    var itemY = itemBox.y;
+    var data = {};
+    data.item = item;
+    data.itemImage = itemImage;
+    if(dollImage.inside(itemX, itemY)){
+      App.vent.trigger('itemOnDoll', data);
+      console.log('item on' + data.item);
+    }else{
+     App.vent.trigger('itemOffDoll', data);
+     console.log('item off ' + data.item);
+    }
+
+  },
 
   render :function(){
+    var that = this;
     var item = this.model;
     var filename = item.attributes.file_name;
-    var itemImage = draw.image('images/' + filename);
-    itemImage.draggable();
-    itemImage.front();
-    itemImage.addClass('item');
-
-    itemImage.dragmove = function(){
-    };
+    item.itemImage = draw.image('images/' + filename);
+    item.itemImage.draggable();
+    item.itemImage.front();
+    item.itemImage.addClass('item');
 
     App.vent.on('dollDrag', function(data){
       var dollImage = data.dollImage;
-      isOnDoll(dollImage, itemImage, item);
+      that.isOnDoll(dollImage, item.itemImage, item);
     });
 
-    function isOnDoll(dollImage,  itemImage,item){
-      var itemBox = itemImage.bbox();
-      var itemX = itemBox.x;
-      var itemY = itemBox.y;
-      var data = {};
-      data.item = item;
-      data.itemImage = itemImage;
-      if(dollImage.inside(itemX, itemY)){
-        App.vent.trigger('itemOnDoll', data);
-        console.log('item on' + data.item);
-      }else{
-       App.vent.trigger('itemOffDoll', data);
-       console.log('item off ' + data.item);
-      }
 
-    }
+
+
   }
 });

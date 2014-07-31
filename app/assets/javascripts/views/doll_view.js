@@ -3,7 +3,7 @@ var DollView = Backbone.View.extend({
     var that = this;
     var doll_image;
     var itemsOnDoll;
-    dollId = this.model.attributes.id;
+    dollId = this.model.get('id');
 
     App.vent.on('itemOnDoll', function(data){
       var item = data.item;
@@ -45,7 +45,7 @@ var DollView = Backbone.View.extend({
 
   render :function(){
     var that = this;
-    var filename = this.model.attributes.file_name;
+    var filename = this.model.get('file_name');
     var doll_image = draw.image('images/' + filename);
     doll_image.draggable();
     doll_image.back();

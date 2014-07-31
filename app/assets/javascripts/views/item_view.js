@@ -3,8 +3,7 @@ var ItemView = Backbone.View.extend({
     var that = this;
     var item = this.model;
     item.set({'onDoll' : false});
-  App.vent.on('changePlace', function(placeId){
-    debugger;
+    App.vent.on('changePlace', function(placeId){
      if (item.get('onDoll')==false){
         item.itemImage.remove();
         that.remove();

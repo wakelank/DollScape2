@@ -1,4 +1,8 @@
 var DestinationView = Backbone.View.extend({
+  initialize: function(){
+    var destination = this.model;
+    App.vent.trigger('newPlace', destination);
+  },
 
   tagname: 'div',
 
@@ -14,25 +18,7 @@ var DestinationView = Backbone.View.extend({
 
     function changePlace(id){
       App.vent.trigger('changePlace', id);
-      var place = new Place();
-      place.url = '/place/' + id
-       place.fetch({
-        success: function(data){
-          var placeView = new PlaceView({model: place})
-          placeView.render();
-          // mainPlaceId = id;
-        }
-     });
     }
 
   }
 });
-
-// $('#main-place').css('background-image','url(images/' + filename + ')');
-// object.style.backgroundImage="url('URL')|none|initial|inherit"
-
-// function changePlace(placeId){
-//   //remove all items not in the itemsOnDoll
-//   //render destination with PlaceID as place
-//   //place should render it's items and it's destinations
-// }

@@ -5,10 +5,36 @@ var DollView = Backbone.View.extend({
     var itemsOnDoll;
     dollId = this.model.get('id');
 
+    this.places = new PlaceCollection();
+    App.vent.on('newPlace', function(place){
+      that.places.add(place);
+    })
+
+    App.vent.on('changePlace', function(placeId){
+      var newPlace = that.places.get(placeId);
+       if (!newPlace.get('items')){
+         var placeView = new PlaceView({ model: newPlace });
+       }
+      //  newPlace.trigger('newPlace');
+       console.log(newPlace.get('items'))
+
+    })
+
+    var place = new Place();
+    place = this.model.get('mainPlace');
+     place.fetch({
+      success: function(data){
+        var placeView = new PlaceView({model: place})
+        placeView.render();
+        App.vent.trigger('newPlace', place)
+      }
+    });
+
     App.vent.on('itemOnDoll', function(data){
       var item = data.item;
       if (that.itemsOnDoll.index(item) == -1){
         that.itemsOnDoll.add(item);
+
         }
     });
     App.vent.on('itemOffDoll', function(data){
@@ -17,16 +43,6 @@ var DollView = Backbone.View.extend({
         that.itemsOnDoll.remove(item);
       }
     });
-
-    // App.vent.on('changePlace', function(){
-    //   var items = $('.item');
-    //   for (var i = 0; i < items.length; ++i){
-    //     if (isItemOnDoll(items[i]) != true){
-    //       items[i].remove();
-    //     }
-    //   };
-    // });
-
 
     function isItemOnDoll(item){
       for (var i = 0; i < that.itemsOnDoll.members.length; ++i){
@@ -37,11 +53,7 @@ var DollView = Backbone.View.extend({
       }
       return val;
     }
-
-
   },
-
-
 
   render :function(){
     var that = this;
@@ -69,7 +81,6 @@ var DollView = Backbone.View.extend({
           diffX = dollX - itemX;
           diffY = dollY - itemY;
           item.itemImage.data({ diffX : diffX, diffY : diffY });
-
         })
       };
     };
@@ -88,17 +99,5 @@ var DollView = Backbone.View.extend({
         item.itemImage.move(dollX - diffX, dollY - diffY);
       })
     };
-
-    var place = new Place();
-    place = this.model.get('mainPlace');
-     place.fetch({
-      success: function(data){
-        var placeView = new PlaceView({model: place})
-        placeView.render();
-      }
-    });
-
-
   }
-
 });

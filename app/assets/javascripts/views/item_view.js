@@ -3,17 +3,13 @@ var ItemView = Backbone.View.extend({
     var that = this;
     var item = this.model;
     item.set({'onDoll' : false});
+    
     App.vent.on('changePlace', function(placeId){
      if (item.get('onDoll')==false){
         item.itemImage.remove();
         that.remove();
       }
-   });
-
-
-
-
-
+    });
   },
 
   isOnDoll: function(dollImage,  itemImage,item){
@@ -32,7 +28,6 @@ var ItemView = Backbone.View.extend({
      item.set({ 'onDoll': false })
      console.log('item off ' + data.item);
     }
-
   },
 
   render :function(){
@@ -48,9 +43,5 @@ var ItemView = Backbone.View.extend({
       var dollImage = data.dollImage;
       that.isOnDoll(dollImage, item.itemImage, item);
     });
-
-
-
-
   }
 });

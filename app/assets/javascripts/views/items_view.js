@@ -1,7 +1,5 @@
 var ItemCollectionView = Backbone.View.extend({
 
-
-
   render: function(){
     var that = this;
     _.each(this.model.models, function(item){

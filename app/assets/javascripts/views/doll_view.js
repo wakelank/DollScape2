@@ -5,10 +5,10 @@ var DollView = Backbone.View.extend({
     var itemsOnDoll;
     dollId = this.model.get('id');
 
-    this.places = new PlaceCollection();
-    App.vent.on('newPlace', function(place){
-      that.places.add(place);
-    })
+    // this.places = new PlaceCollection();
+    // App.vent.on('newPlace', function(place){
+    //   that.places.add(place);
+    // })
 
     App.vent.on('changePlace', function(placeId){
       var newPlace = that.places.get(placeId);
@@ -26,7 +26,7 @@ var DollView = Backbone.View.extend({
       success: function(data){
         var placeView = new PlaceView({model: place})
         placeView.render();
-        App.vent.trigger('newPlace', place)
+        // App.vent.trigger('newPlace', place)
       }
     });
 

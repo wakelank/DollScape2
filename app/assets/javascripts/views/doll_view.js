@@ -10,25 +10,25 @@ var DollView = Backbone.View.extend({
     //   that.places.add(place);
     // })
 
-    App.vent.on('changePlace', function(placeId){
-      var newPlace = that.places.get(placeId);
-       if (!newPlace.get('items')){
-         var placeView = new PlaceView({ model: newPlace });
-       }
-      //  newPlace.trigger('newPlace');
-       console.log(newPlace.get('items'))
-
-    })
-
-    var place = new Place();
-    place = this.model.get('mainPlace');
-     place.fetch({
-      success: function(data){
-        var placeView = new PlaceView({model: place})
-        placeView.render();
-        // App.vent.trigger('newPlace', place)
-      }
-    });
+    // App.vent.on('changePlace', function(placeId){
+    //   var newPlace = places.get(placeId);
+    //    if (!newPlace.get('items')){
+    //      var placeView = new PlaceView({ model: newPlace });
+    //    }
+    //   //  newPlace.trigger('newPlace');
+    //    console.log(newPlace.get('items'))
+    //
+    // })
+    //
+    // var place = new Place();
+    // place = this.model.get('mainPlace');
+    //  place.fetch({
+    //   success: function(data){
+    //     var placeView = new PlaceView({model: place})
+    //     placeView.render();
+    //     // App.vent.trigger('newPlace', place)
+    //   }
+    // });
 
     App.vent.on('itemOnDoll', function(data){
       var item = data.item;

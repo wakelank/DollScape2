@@ -1,3 +1,7 @@
 var ItemCollection = Backbone.Collection.extend({
-  model : Item
+  model : Item,
+
+  initialize: function(){
+    console.log('new itemcollection!');
+  }
 });

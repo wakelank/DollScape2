@@ -22,9 +22,10 @@
     var doll = new Doll();
     doll.fetch({
       success: function(){
-        doll.set_place(doll.get('id'));
+        // doll.set_place(doll.get('id'));
         var dollView = new DollView({ model: doll });
         dollView.render();
+        App.vent.trigger('setPlace',doll.get('place_id'));
       },
       error: function(model,response,options){
         console.log("fetch error")
@@ -34,8 +35,21 @@
     var places = new PlaceCollection();
     places.fetch({
       success: function(){
-        console.log("places: " + places);
-      }
+        var that = this;
+        console.log("places.models: " + places.models[0].get('id'));
+        _.each(places.models, function(place){
+          console.log("place id: " + place.get('id'));
+          placeView = new PlaceView({ model:place });
+        })
+
+
+      App.vent.on('setPlace', function(id){
+        debugger;
+        newMainPlace = this.get(id);
+        console.log("newMainPlace: " + newMainPlace);
+        newMainPlace.render();
+      } ,that);
+    }
     });
   });
 </script>

@@ -4,12 +4,12 @@ var ItemView = Backbone.View.extend({
     var item = this.model;
     item.set({'onDoll' : false});
 
-    App.vent.on('changePlace', function(placeId){
-     if (item.get('onDoll')==false){
-        item.itemImage.remove();
-        that.remove();
-      }
-    });
+    // App.vent.on('changePlace', function(placeId){
+    //  if (item.get('onDoll')==false){
+    //     item.itemImage.remove();
+    //     that.remove();
+    //   }
+    // });
   },
 
   isOnDoll: function(dollImage,  itemImage,item){

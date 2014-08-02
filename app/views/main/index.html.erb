@@ -13,7 +13,7 @@
 
 <script type='text/javascript'>
   $(function(){
-
+    var that = this;
     draw = SVG('drawing').size(800, 500);
 
     window.App = {};
@@ -25,31 +25,37 @@
         // doll.set_place(doll.get('id'));
         var dollView = new DollView({ model: doll });
         dollView.render();
-        App.vent.trigger('setPlace',doll.get('place_id'));
+        dollPlaceId = doll.get('place_id');
+
+        var places = new PlaceCollection();
+
+        places.fetch({
+          success: function(){
+            var that = this;
+            _.each(places.models, function(place){
+            //  var newPlace = new Place(place);
+              if (place.get('id') == dollPlaceId){
+                place.set({'dollPlace' : true});
+              }
+              placeView = new PlaceView({ model:place });
+              //
+              // var dollRoomId = doll.get('place_id');
+              // var dollPlace = places.get(dollRoomId);
+              // if (place == dollPlace){
+              //   placeView.render();
+            //  }
+            });
+
+        }
+        });
       },
       error: function(model,response,options){
         console.log("fetch error")
       }
     });
 
-    var places = new PlaceCollection();
-    places.fetch({
-      success: function(){
-        var that = this;
-        console.log("places.models: " + places.models[0].get('id'));
-        _.each(places.models, function(place){
-          console.log("place id: " + place.get('id'));
-          placeView = new PlaceView({ model:place });
-        })
 
 
-      App.vent.on('setPlace', function(id){
-        debugger;
-        newMainPlace = this.get(id);
-        console.log("newMainPlace: " + newMainPlace);
-        newMainPlace.render();
-      } ,that);
-    }
-    });
+
   });
 </script>

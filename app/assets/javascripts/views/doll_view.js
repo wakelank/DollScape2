@@ -99,5 +99,6 @@ var DollView = Backbone.View.extend({
         item.itemImage.move(dollX - diffX, dollY - diffY);
       })
     };
+
   }
 });

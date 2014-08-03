@@ -48,3 +48,4 @@ Item.create({name: "star1", color:"#", place: park, file_name: "star1.svg", x_po
 Item.create({name: "star2", color:"#", place: beach, file_name: "star2.svg", x_pos: 0, y_pos: 0 })
 Item.create({name: "shoe2l", color:"#", place: beach, file_name: "shoe2l.svg", x_pos: 0, y_pos: 0 })
 Item.create({name: "shoe2r", color:"#", place: beach, file_name: "shoe2r.svg", x_pos: 0, y_pos: 0 })
+Item.create({name: "glasses1", color:"#", place: park, file_name: "glasses1.svg", x_pos: 0, y_pos: 0 })

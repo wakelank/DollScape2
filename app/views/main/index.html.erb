@@ -1,10 +1,9 @@
-<h1>Dollscape</h1>
+<h1>Dollscape<span id="save-btn"><i class="fa fa-floppy-o"></i></span></h1>
 
-<button id="save">save</button>
+
 
 <div id='place-container'>
   <div id='main-place' class='place'>
-    main
   </div>
   <div id='destination-places'>
   </div>
@@ -16,7 +15,7 @@
 <script type='text/javascript'>
   $(function(){
     var that = this;
-    draw = SVG('drawing').size(800, 500);
+    draw = SVG('main-place').size('100%','100%');
 
     window.App = {};
     window.App.vent = _.extend({}, Backbone.Events);
@@ -50,8 +49,12 @@
     });
   });
 
-  $('#save').on('click', function(){
+  $('#save-btn').mousedown(function(){
     App.vent.trigger('save');
+    $(this).css('color', '#D9CE4F');
+  });
+  $('#save-btn').mouseup(function(){
+    $(this).css('color', '#E6E8E2');
   });
 
 

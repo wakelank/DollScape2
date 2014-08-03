@@ -1,9 +1,19 @@
 var DollView = Backbone.View.extend({
   initialize: function(){
     var that = this;
-    var doll_image;
     var itemsOnDoll;
     dollId = this.model.get('id');
+    var doll = this.model;
+    var dollImage = doll.dollImage;
+
+    App.vent.on('itemStop', function(item){
+      that.isOnDoll(item)
+    });
+
+
+
+
+
 
     App.vent.on('itemOnDoll', function(data){
       var item = data.item;
@@ -30,16 +40,37 @@ var DollView = Backbone.View.extend({
     }
   },
 
+  isOnDoll: function(item){
+    var dollBox = this.dollImage.bbox();
+    var dollImage = this.dollImage;
+    var itemImage = item.itemImage;
+    var itemBox = itemImage.bbox();
+    var itemX = itemBox.x;
+    var itemY = itemBox.y;
+    var data = {};
+    data.item = item;
+    data.itemImage = itemImage;
+    if(dollImage.inside(itemX, itemY)){
+      item.set({ 'onDoll': true });
+      App.vent.trigger('itemOnDoll', data);
+      console.log('item on' + data.item);
+    }else{
+     App.vent.trigger('itemOffDoll', data);
+     item.set({ 'onDoll': false })
+     console.log('item off ' + data.item);
+    }
+  },
+
   render :function(){
     var that = this;
     var filename = this.model.get('file_name');
-    var doll_image = draw.image('images/' + filename);
-    doll_image.draggable();
-    doll_image.back();
+    this.dollImage = draw.image('images/' + filename);
+    this.dollImage.draggable();
+    this.dollImage.back();
     this.itemsOnDoll = draw.set();
 
-    doll_image.beforedrag = function(){
-      var data = { dollImage: doll_image };
+    this.dollImage.beforedrag = function(){
+      var data = { "dollImage": this.dollImage };
       App.vent.trigger('dollDrag', data);
 
 
@@ -50,7 +81,7 @@ var DollView = Backbone.View.extend({
           var itemBox = item.itemImage.bbox();
           var itemX = itemBox.x;
           var itemY = itemBox.y;
-          var dollBox = doll_image.bbox();
+          var dollBox = that.dollImage.bbox();
           var dollX = dollBox.x;
           var dollY = dollBox.y;
           diffX = dollX - itemX;
@@ -60,8 +91,8 @@ var DollView = Backbone.View.extend({
       };
     };
 
-    doll_image.dragmove = function(delta,event){
-      var dollBox = doll_image.bbox();
+    this.dollImage.dragmove = function(delta,event){
+      var dollBox = that.dollImage.bbox();
       var dollX = dollBox.x;
       var dollY = dollBox.y;
 

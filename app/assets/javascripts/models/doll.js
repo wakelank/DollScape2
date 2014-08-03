@@ -1,4 +1,7 @@
 var Doll = Backbone.Model.extend({
+  initialize: function(){
+    var dollImage;
+  },
 
   urlRoot: '/dolls',
   // set_place: function(doll_id){

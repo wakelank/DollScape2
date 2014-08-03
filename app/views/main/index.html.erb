@@ -48,14 +48,11 @@
         console.log("fetch error")
       }
     });
-
-
-  })
-
-$('#save').on('click', function(){
-  App.vent.trigger('save');
-
-
-
   });
+
+  $('#save').on('click', function(){
+    App.vent.trigger('save');
+  });
+
+
 </script>

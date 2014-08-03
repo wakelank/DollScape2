@@ -1,10 +1,13 @@
 var DollView = Backbone.View.extend({
   initialize: function(){
+
     var that = this;
     var itemsOnDoll;
     dollId = this.model.get('id');
     var doll = this.model;
     var dollImage = doll.dollImage;
+    var skinColorIndex = 0;
+    var hairColorIndex = 0;
 
     App.vent.on('itemStop', function(item){
       that.isOnDoll(item)
@@ -23,6 +26,16 @@ var DollView = Backbone.View.extend({
         that.itemsOnDoll.remove(item);
       }
     });
+
+    App.vent.on('changeSkinColor', function(){
+      changeSkinColor();
+    });
+
+    App.vent.on('changeHairColor', function(){
+      changeSkinColor();
+    });
+
+
 
     function isItemOnDoll(item){
       for (var i = 0; i < that.itemsOnDoll.members.length; ++i){
@@ -73,11 +86,19 @@ var DollView = Backbone.View.extend({
     this.dollImage.draggable();
     this.dollImage.back();
     this.itemsOnDoll = draw.set();
+    var moveFeedBackConst = 10;
+
 
     this.dollImage.beforedrag = function(){
       var data = { "dollImage": this.dollImage };
       App.vent.trigger('dollDrag', data);
 
+      var dollBox = that.dollImage.bbox();
+      var dollX = dollBox.x;
+      var dollY = dollBox.y;
+
+      that.dollImage.move(dollX - moveFeedBackConst, dollY - moveFeedBackConst );
+      that.dollImage.front();
 
       if (that.itemsOnDoll.members.length > 0 ){
         $.each(that.itemsOnDoll.members, function(i,item){
@@ -86,9 +107,9 @@ var DollView = Backbone.View.extend({
           var itemBox = item.itemImage.bbox();
           var itemX = itemBox.x;
           var itemY = itemBox.y;
-          var dollBox = that.dollImage.bbox();
-          var dollX = dollBox.x;
-          var dollY = dollBox.y;
+          item.itemImage.move (itemX - moveFeedBackConst, itemY - moveFeedBackConst);
+          item.itemImage.front();
+
           diffX = dollX - itemX;
           diffY = dollY - itemY;
           item.itemImage.data({ diffX : diffX, diffY : diffY });
@@ -101,15 +122,29 @@ var DollView = Backbone.View.extend({
       var dollX = dollBox.x;
       var dollY = dollBox.y;
 
-    $.each(that.itemsOnDoll.members, function(i,item){
-        var diffX = item.itemImage.data('diffX');
-        var diffY = item.itemImage.data('diffY');
-        var itemBox = item.itemImage.bbox();
-        var itemX = itemBox.x;
-        var itemY = itemBox.y;
-        item.itemImage.move(dollX - diffX, dollY - diffY);
-      })
+      $.each(that.itemsOnDoll.members, function(i,item){
+          var diffX = item.itemImage.data('diffX');
+          var diffY = item.itemImage.data('diffY');
+          var itemBox = item.itemImage.bbox();
+          var itemX = itemBox.x;
+          var itemY = itemBox.y;
+          item.itemImage.move(dollX - diffX, dollY - diffY);
+      });
     };
 
+    this.dollImage.dragend = function(){
+      var dollBox = that.dollImage.bbox();
+      var dollX = dollBox.x;
+      var dollY = dollBox.y;
+      that.dollImage.move(dollX + moveFeedBackConst, dollY + moveFeedBackConst);
+
+      $.each(that.itemsOnDoll.members, function(i,item){
+          var itemBox = item.itemImage.bbox();
+          var itemX = itemBox.x;
+          var itemY = itemBox.y;
+          item.itemImage.move (itemX + moveFeedBackConst, itemY + moveFeedBackConst);
+
+      });
+    };
   }
 });

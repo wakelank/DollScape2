@@ -3,14 +3,26 @@ var ItemView = Backbone.View.extend({
     var that = this;
     var item = this.model;
     item.set({'onDoll' : false});
+    App.vent.on('changePlace', function(placeId){
+      if (item.get('onDoll')==false){
+         item.itemImage.remove();
+         that.remove();
+       }
+       that.renderPlace(placeId);
 
-    // App.vent.on('changePlace', function(placeId){
-    //  if (item.get('onDoll')==false){
-    //     item.itemImage.remove();
-    //     that.remove();
-    //   }
-    // });
+    });
+
   },
+
+    renderPlace: function(placeId){
+      App.vent.trigger('renderPlace', placeId);
+
+
+
+
+    },
+
+
 
   isOnDoll: function(dollImage,  itemImage,item){
     var itemBox = itemImage.bbox();
@@ -29,9 +41,9 @@ var ItemView = Backbone.View.extend({
      console.log('item off ' + data.item);
     }
   },
-
   render :function(){
     var that = this;
+
     var item = this.model;
     var filename = item.attributes.file_name;
     item.itemImage = draw.image('images/' + filename);

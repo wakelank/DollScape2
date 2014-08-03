@@ -30,10 +30,15 @@ var PlaceView = Backbone.View.extend({
       // });
 
     // this.model.on('newPlace', this.render());
-      App.vent.on("changePlace", function(placeId){
-        var place = that.model;
+      App.vent.on("renderPlace", function(placeId){
+
+        place.set({'mainPlace' : false })
         if (place.get('id') == placeId){
           that.render();
+          place.set({'mainPlace' : true });
+        }
+        if (place.get('mainPlace')){
+          console.log('main place is ' + place.get('name'));
         }
       })
       var destinations = new DestinationCollection();
@@ -64,7 +69,10 @@ var PlaceView = Backbone.View.extend({
 
           App.vent.on('itemOffDoll', function(data){
             var item = data.item;
-            items.add(item);
+            if (place.get('mainPlace')){
+              place.get('items').add(item);
+            }
+            console.log(place.get('name') + " " + item.get('name'));
           });
 
           var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
@@ -87,7 +95,7 @@ var PlaceView = Backbone.View.extend({
     var filename = place.get('file_name');
     $('#main-place').css('background-image','url(images/' + filename + ')');
     var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
-    // console.log(place.get('items'));
+     console.log(place.get('items'));
      itemCollectionView.render();
 
     $('.destination').each(function(){

@@ -1,17 +1,17 @@
 #Dollscape
 ##Description
-Dollscape is a webapp I made for my young daughters.  You get a paper doll, various peices of clothing and other items, and a handful of locations to explore.  Put on your bathing suit, go to the beach and look for shells, or dress up fancy for a party.
+Dollscape is a webapp I made for my young daughters.  You get a paper doll, various pieces of clothing and other items, and a handful of locations to explore.  Put on your bathing suit, go go to the beach and look for shells, or dress up fancy for a party.
 
 ![Dollscape screenshot](/screenshots/dollscapeScreenshot.gif)
 ##Development
-Dollspace utilizes the following 
+Dollscape utilizes the following 
 - Ruby on Rails
 - PostgeSQL
 - JavaScript
 - SVG.JS
 - Backbone
 
-Backbone came in handy for managing the models and colletions.  Each **place** is a model that has a collection of **destinations** (which are also **places**), and a collection of **items**.  The views need to frequents communicate with each other, which was challenging, so I made good use of Backbone's events.  
+Backbone came in handy for managing the models and collections.  Each **place** is a model that and has a collection of **destinations** (which are also **place** models), and a collection of **items**.  The views need to frequently communicate with each other, which was challenging, so I made good use of Backbone's events.  
 
 	...
     if(dollImage.inside(itemUpperLeft.x, itemUpperLeft.y) ||
@@ -27,7 +27,7 @@ Backbone came in handy for managing the models and colletions.  Each **place** i
     }
   },
 
-SVG.JS is a JavaScript library for handling SVG images.  It's advantage over Snap.js is that it allows for callbacks in the **drag** method, which was necessary for this app.  However, Snap makes it easier to access portions of a complicated SVG image, while SVG.JS requires you handle the image as a group.  For example, I was able to easily change the color of the doll's hair in Snap, but was unable to in SVG.JS.
+SVG.JS is a JavaScript library for handling SVG images.  It's advantage over Snap.js is that it allows for callbacks in on the **drag** method, which was necessary for this app.  However, Snap makes it easier to access portions of a complicated SVG image, while SVG.JS requires you handle the image as a group.  For example, I was able to easily change the color of the doll's hair in Snap, but was unable to in SVG.JS.
 
 ##Highlights
 The generation of the **places**, **destinations**, and **items** are all database driven.  So to add more all you have to do is edit the seeds.rb file.  One could easily fill this world with hard-to-find places and interesting items for kids to collect.

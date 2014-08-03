@@ -17,11 +17,9 @@ var ItemView = Backbone.View.extend({
     var item = this.model;
     var xPos = item.get('x_pos');
     var yPos = item.get('y_pos');
-    
+
     var filename = item.attributes.file_name;
     item.itemImage = draw.image('images/' + filename);
-    console.log(item.get('name'));
-    console.log('x: ' + xPos.toString() +  ' y: ' + yPos.toString());
     item.itemImage.move(xPos, yPos);
     item.itemImage.draggable();
     item.itemImage.front();

@@ -71,11 +71,9 @@ var DollView = Backbone.View.extend({
         dollImage.inside(itemMiddle.x, itemMiddle.y)){
       item.set({ 'onDoll': true });
       App.vent.trigger('itemOnDoll', data);
-      console.log('item on' + data.item);
     }else{
      App.vent.trigger('itemOffDoll', data);
      item.set({ 'onDoll': false })
-     console.log('item off ' + data.item);
     }
   },
 

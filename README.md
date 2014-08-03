@@ -2,9 +2,9 @@
 ##Description
 Dollscape is a webapp I made for my young daughters.  You get a paper doll, various peices of clothing and other items, and a handful of locations to explore.  Put on your bathing suit, go to the beach and look for shells, or dress up fancy for a party.
 
-![Dollscape screetshot](http://imgur.com/YWJ5pTN)
+![Dollscape screenshot](/screenshots/dollscapeScreenshot.gif)
 ##Development
-Dollspace utilizes the following
+Dollspace utilizes the following 
 - Ruby on Rails
 - PostgeSQL
 - JavaScript
@@ -36,7 +36,7 @@ The generation of the **places**, **destinations**, and **items** are all databa
 	beach = Place.create ({ name: "Beach", file_name: "beach.svg"})
 	park = Place.create({ name: "Park", file_name: "park.svg" })
 	party = Place.create({ name: "Party", file_name: "party.svg" })
-
+	
 	Doll.create({ name: 'Lichard', file_name: "doll1.svg", hair_color: "#E64F3E", skin_color: "3ED5E6", place: 	home, x_pos: 0, y_pos: 0,  })
 
 	Place.all.each do |place|
@@ -53,3 +53,5 @@ The generation of the **places**, **destinations**, and **items** are all databa
 	Item.create({name: "dress4", color:"#", place: party, file_name: "dress4.svg", x_pos: 0, y_pos: 0 })
 	Item.create({name: "ball1", color:"#", place: park, file_name: "ball1.svg", x_pos: 0, y_pos: 0 })
 	...
+
+

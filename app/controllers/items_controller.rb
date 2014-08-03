@@ -15,5 +15,5 @@ end
 
 
    def item_params
-      params.require(:item).permit(:place_id)
+      params.require(:item).permit(:place_id, :x_pos, :y_pos)
     end

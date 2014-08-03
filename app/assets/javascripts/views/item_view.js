@@ -8,41 +8,21 @@ var ItemView = Backbone.View.extend({
       if (item.get('onDoll')==false){
          item.itemImage.remove();
          that.remove();
-
        }
-
     });
-
-
-
   },
 
-
-
-
-  // isOnDoll: function(dollImage, item){
-  //   var itemImage = item.get('itemImage');
-  //   var itemBox = itemImage.bbox();
-  //   var itemX = itemBox.x;
-  //   var itemY = itemBox.y;
-  //   var data = {};
-  //   data.item = item;
-  //   data.itemImage = itemImage;
-  //   if(dollImage.inside(itemX, itemY)){
-  //     item.set({ 'onDoll': true });
-  //     App.vent.trigger('itemOnDoll', data);
-  //     console.log('item on' + data.item);
-  //   }else{
-  //    App.vent.trigger('itemOffDoll', data);
-  //    item.set({ 'onDoll': false })
-  //    console.log('item off ' + data.item);
-  //   }
-  // },
   render :function(){
     var that = this;
     var item = this.model;
+    var xPos = item.get('x_pos');
+    var yPos = item.get('y_pos');
+    
     var filename = item.attributes.file_name;
     item.itemImage = draw.image('images/' + filename);
+    console.log(item.get('name'));
+    console.log('x: ' + xPos.toString() +  ' y: ' + yPos.toString());
+    item.itemImage.move(xPos, yPos);
     item.itemImage.draggable();
     item.itemImage.front();
     item.itemImage.addClass('item');
@@ -53,11 +33,10 @@ var ItemView = Backbone.View.extend({
     item.itemImage.dragend = function(){
       App.vent.trigger('itemStop', item);
 
+      var itemBox = item.itemImage.bbox()
+      item.set('x_pos', itemBox.x);
+      item.set('y_pos', itemBox.y);
     }
 
-    // App.vent.on('dollDrag', function(data){
-    //   var dollImage = data.dollImage;
-    //   that.isOnDoll(dollImage, item.itemImage, item);
-    // });
   }
 });

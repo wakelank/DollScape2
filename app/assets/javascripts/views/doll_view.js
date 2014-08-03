@@ -10,18 +10,13 @@ var DollView = Backbone.View.extend({
       that.isOnDoll(item)
     });
 
-
-
-
-
-
     App.vent.on('itemOnDoll', function(data){
       var item = data.item;
       if (that.itemsOnDoll.index(item) == -1){
         that.itemsOnDoll.add(item);
-
-        }
+      }
     });
+
     App.vent.on('itemOffDoll', function(data){
       var item = data.item;
       if (that.itemsOnDoll.index(item) > -1){
@@ -45,12 +40,22 @@ var DollView = Backbone.View.extend({
     var dollImage = this.dollImage;
     var itemImage = item.itemImage;
     var itemBox = itemImage.bbox();
+    var itemUpperLeft = { 'x' : itemBox.x, 'y' : itemBox.y };
+    var itemUpperRight = { 'x' : itemBox.x + itemBox.width, 'y' : itemBox.y };
+    var itemLowerLeft = { 'x' : itemBox.x, 'y' : itemBox.y + itemBox.height };
+    var itemLowerRight = { 'x' : itemBox.x + itemBox.width, 'y' : itemBox.y + itemBox.height };
+    var itemMiddle = { 'x' : itemBox.x + (itemBox.width/2), 'y' : itemBox.y + (itemBox.height/2) };
+
     var itemX = itemBox.x;
     var itemY = itemBox.y;
     var data = {};
     data.item = item;
     data.itemImage = itemImage;
-    if(dollImage.inside(itemX, itemY)){
+    if(dollImage.inside(itemUpperLeft.x, itemUpperLeft.y) ||
+        dollImage.inside(itemUpperRight.x, itemUpperRight.y) ||
+        dollImage.inside(itemLowerLeft.x, itemLowerLeft.y) ||
+        dollImage.inside(itemLowerRight.x, itemLowerRight.y) ||
+        dollImage.inside(itemMiddle.x, itemMiddle.y)){
       item.set({ 'onDoll': true });
       App.vent.trigger('itemOnDoll', data);
       console.log('item on' + data.item);

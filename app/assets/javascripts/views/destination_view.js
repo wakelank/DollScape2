@@ -1,7 +1,6 @@
 var DestinationView = Backbone.View.extend({
   initialize: function(){
     var destination = this.model;
-  //  App.vent.trigger('newPlace', destination);
   },
 
   tagname: 'div',

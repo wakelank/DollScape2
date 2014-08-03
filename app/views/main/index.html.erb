@@ -1,5 +1,7 @@
 <h1>Dollscape</h1>
 
+<button id="save">save</button>
+
 <div id='place-container'>
   <div id='main-place' class='place'>
     main
@@ -38,10 +40,8 @@
                 place.set({'dollPlace' : true});
               }
               placeView = new PlaceView({ model:place });
-
             });
-
-        }
+          }
         });
       },
       error: function(model,response,options){
@@ -49,6 +49,11 @@
       }
     });
 
+
+  })
+
+$('#save').on('click', function(){
+  App.vent.trigger('save');
 
 
 

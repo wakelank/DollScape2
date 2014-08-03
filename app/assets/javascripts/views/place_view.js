@@ -2,6 +2,16 @@ var PlaceView = Backbone.View.extend({
   initialize: function(){
     var that = this;
     var place = this.model;
+    // 
+    // App.vent.on('changePlace', function(placeId){
+    //   if (place.get('itemsView')){
+    //     place.get('itemsView').remove();
+    //   }
+    //
+    // });
+      //  that.renderPlace(placeId);
+
+
   //  var items = new ItemCollection();
 
     // itemsUrl = '/place/' + place.get('id') + '/items';
@@ -31,6 +41,7 @@ var PlaceView = Backbone.View.extend({
 
     // this.model.on('newPlace', this.render());
       App.vent.on("renderPlace", function(placeId){
+console.log("renderPlace " + event.target);
 
         place.set({'mainPlace' : false })
         if (place.get('id') == placeId){
@@ -100,9 +111,9 @@ var PlaceView = Backbone.View.extend({
     var place = this.model;
     var filename = place.get('file_name');
     $('#main-place').css('background-image','url(images/' + filename + ')');
-
+    console.log(filename);
      itemCollectionView = new ItemCollectionView({ model: place.get('items') });
-
+     place.set({'itemsView' : itemCollectionView});
      itemCollectionView.render();
 
     $('.destination').each(function(){

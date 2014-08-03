@@ -5,26 +5,25 @@ var ItemView = Backbone.View.extend({
     item.set({'onDoll' : false});
 
     App.vent.on('changePlace', function(placeId){
-      console.log($('.item').length);
       if (item.get('onDoll')==false){
-        
          item.itemImage.remove();
          that.remove();
-
+    
        }
-       that.renderPlace(placeId);
+      //  that.renderPlace(placeId);
 
     });
 
   },
 
-    renderPlace: function(placeId){
-      App.vent.trigger('renderPlace', placeId);
-
-
-
-
-    },
+    // renderPlace: function(placeId){
+    //   console.log('renderplace trigger');
+    //
+    //   App.vent.trigger('renderPlace', placeId);
+    //
+    //
+    //
+    // },
 
 
 

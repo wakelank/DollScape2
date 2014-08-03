@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 81.7 40.5" enable-background="new 0 0 81.7 40.5" xml:space="preserve">
+<g>
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="6.1413" y1="10.166" x2="40.8413" y2="10.166" gradientTransform="matrix(1 0 0 -1 0 30.0952)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.5169" style="stop-color:#7FD0E8"/>
+		<stop  offset="0.5225" style="stop-color:#00B0D8"/>
+		<stop  offset="0.7753" style="stop-color:#008AA9"/>
+		<stop  offset="0.9888" style="stop-color:#00708C"/>
+	</linearGradient>
+	<path fill="url(#SVGID_1_)" d="M40.8,17c0,0-30.1-26.9-33.7-1.3c0,0-7,23.2,16.9,18.9l16.9-4.3V17z"/>
+	
+		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="40.8413" y1="10.166" x2="75.7817" y2="10.166" gradientTransform="matrix(1 0 0 -1 0 30.0952)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.5169" style="stop-color:#7FD0E8"/>
+		<stop  offset="0.5225" style="stop-color:#00B0D8"/>
+		<stop  offset="0.7753" style="stop-color:#008AA9"/>
+		<stop  offset="0.9888" style="stop-color:#00708C"/>
+	</linearGradient>
+	<path fill="url(#SVGID_2_)" d="M40.8,17c0,0,30.4-26.9,34-1.3c0,0,6.9,23.2-17,18.9l-17-4.3V17z"/>
+	
+		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="29.0883" y1="9.0766" x2="52.6663" y2="9.0766" gradientTransform="matrix(1 0 0 -1 0 30.0952)">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="0.5169" style="stop-color:#7FD0E8"/>
+		<stop  offset="0.5225" style="stop-color:#00B0D8"/>
+		<stop  offset="0.7753" style="stop-color:#008AA9"/>
+		<stop  offset="0.9888" style="stop-color:#00708C"/>
+	</linearGradient>
+	<circle fill="url(#SVGID_3_)" cx="40.9" cy="21" r="11.8"/>
+	<g>
+		<path fill="#FFFFFF" d="M69,25.1c-8.6-3.8-8.8-3.7-13,4.7c3.8-8.6,3.7-8.8-4.7-13c8.6,3.8,8.8,3.7,13-4.7
+			C60.4,20.7,60.5,20.9,69,25.1z"/>
+	</g>
+</g>
+</svg>

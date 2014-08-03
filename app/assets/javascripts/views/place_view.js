@@ -37,9 +37,9 @@ var PlaceView = Backbone.View.extend({
           that.render();
           place.set({'mainPlace' : true });
         }
-        if (place.get('mainPlace')){
-          console.log('main place is ' + place.get('name'));
-        }
+        // if (place.get('mainPlace')){
+        //   console.log('main place is ' + place.get('name'));
+        // }
       })
       var destinations = new DestinationCollection();
       var destinationsUrl = '/place/' + place.get('id') + '/destinations'
@@ -74,8 +74,14 @@ var PlaceView = Backbone.View.extend({
             }
             console.log(place.get('name') + " " + item.get('name'));
           });
+          // console.log('items view is ' + place.get('itemsView'));
+          // if (place.get('itemsView')){
+          //   place.get('itemsView').remove();
+          //   console.log('removing items view');
+          // }
+          //itemCollectionView = new ItemCollectionView({ model: place.get('items') });
+        //  place.set('itemsView', itemCollectionView);
 
-          var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
           if (place.get('dollPlace')){
             that.render();
           }
@@ -94,8 +100,9 @@ var PlaceView = Backbone.View.extend({
     var place = this.model;
     var filename = place.get('file_name');
     $('#main-place').css('background-image','url(images/' + filename + ')');
-    var itemCollectionView = new ItemCollectionView({ model: place.get('items') });
-     console.log(place.get('items'));
+
+     itemCollectionView = new ItemCollectionView({ model: place.get('items') });
+
      itemCollectionView.render();
 
     $('.destination').each(function(){
